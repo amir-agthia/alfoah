@@ -295,7 +295,7 @@
     });
   });
 
-  form.addEventListener('submit', async (e) => {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
 
     const allValid = ['name', 'email', 'company']
@@ -307,47 +307,11 @@
       return;
     }
 
-    const payload = {
-      name:    form.name.value.trim(),
-      email:   form.email.value.trim(),
-      company: form.company.value.trim(),
-      mobile:  form.mobile.value.trim() || null,
-      source:  'qr-catalog-landing',
-      submittedAt: new Date().toISOString()
-    };
+    const firstName = form.name.value.trim().split(' ')[0];
+    document.getElementById('user-first-name').textContent = firstName;
 
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Processing...';
-
-    try {
-      const res = await fetch('https://api.github.com/repos/amir-agthia/alfoah/dispatches', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/vnd.github+json',
-          'Authorization': 'Bearer REPLACE_WITH_YOUR_GITHUB_PAT',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          event_type: 'lead-submission',
-          client_payload: payload
-        })
-      });
-
-      if (!res.ok) throw new Error('dispatch failed');
-
-      // Extract and set user's first name
-      const firstName = payload.name.split(' ')[0];
-      document.getElementById('user-first-name').textContent = firstName;
-
-      // Hide form and show download view
-      form.style.display = 'none';
-      successMessage.style.display = 'block';
-
-    } catch (err) {
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Get the catalog';
-      alert('Something went wrong sending your details. Please try again.');
-    }
+    form.style.display = 'none';
+    successMessage.style.display = 'block';
   });
 </script>
 

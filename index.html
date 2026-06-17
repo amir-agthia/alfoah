@@ -180,6 +180,17 @@
 
   .trust svg { flex-shrink: 0; }
 
+  .brand-logo {
+    display: block;
+    margin: 0 auto;
+    height: 100px;
+    width: auto;
+  }
+
+  @media (min-width: 600px) {
+    .brand-logo { height: 150px; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; }
   }
@@ -190,7 +201,7 @@
 <div class="brand-bar" aria-hidden="true"></div>
 
 <main class="page">
-  <p class="eyebrow"><img src="alfoah logo.png" alt="Al Foah" style="height: 32px; display: block; margin: 0 auto;"></p>
+  <p class="eyebrow"><img src="alfoah logo.png" alt="Al Foah" class="brand-logo"></p>
   <h1>Nature's sweetness, engineered for manufacturing</h1>
   <p class="lede">Get our full catalog of date-based ingredients &mdash; pastes, syrups, powders and more &mdash; with specs and applications for bakery, beverage, confectionery and beyond.</p>
 

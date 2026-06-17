@@ -6,6 +6,14 @@
 <title>Download the Al Foah ingredients catalog</title>
 <link rel="icon" href="favicon.ico">
 <meta name="description" content="Get the full Al Foah catalog of date-based ingredients — pastes, syrups, powders and more — with specs and applications for bakery, beverage and confectionery.">
+<meta property="og:title" content="Download the Al Foah ingredients catalog">
+<meta property="og:description" content="Get our full catalog of date-based ingredients — pastes, syrups, powders and more — with specs and applications for bakery, beverage, confectionery and beyond.">
+<meta property="og:image" content="social sharing.webp">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Download the Al Foah ingredients catalog">
+<meta name="twitter:description" content="Get our full catalog of date-based ingredients — pastes, syrups, powders and more — with specs and applications for bakery, beverage, confectionery and beyond.">
+<meta name="twitter:image" content="social sharing.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -183,12 +191,11 @@
   .brand-logo {
     display: block;
     margin: 0 auto;
-    height: 100px;
-    width: auto;
+    width: 150px;
   }
 
   @media (min-width: 600px) {
-    .brand-logo { height: 150px; }
+    .brand-logo { width: 200px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -201,7 +208,7 @@
 <div class="brand-bar" aria-hidden="true"></div>
 
 <main class="page">
-  <p class="eyebrow"><img src="alfoah logo.png" alt="Al Foah" class="brand-logo"></p>
+  <p class="eyebrow"><img src="alfoah logo.svg" alt="Al Foah" class="brand-logo"></p>
   <h1>Nature's sweetness, engineered for manufacturing</h1>
   <p class="lede">Get our full catalog of date-based ingredients &mdash; pastes, syrups, powders and more &mdash; with specs and applications for bakery, beverage, confectionery and beyond.</p>
 
@@ -312,11 +319,20 @@
     submitBtn.textContent = 'Processing...';
 
     try {
-      // ── BACKEND PLACEMAILER ───────────────────────────────────
-      // const res = await fetch('https://your-endpoint.example.com/leads', { ... });
-      // ──────────────────────────────────────────────────────────
+      const res = await fetch('https://api.github.com/repos/amir-agthia/alfoah/dispatches', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/vnd.github+json',
+          'Authorization': 'Bearer REPLACE_WITH_YOUR_GITHUB_PAT',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          event_type: 'lead-submission',
+          client_payload: payload
+        })
+      });
 
-      console.log('Lead captured:', payload);
+      if (!res.ok) throw new Error('dispatch failed');
 
       // Extract and set user's first name
       const firstName = payload.name.split(' ')[0];

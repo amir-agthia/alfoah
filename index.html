@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Download the Al Foah ingredients catalog</title>
+<link rel="icon" href="favicon.ico">
 <meta name="description" content="Get the full Al Foah catalog of date-based ingredients — pastes, syrups, powders and more — with specs and applications for bakery, beverage and confectionery.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -189,7 +190,7 @@
 <div class="brand-bar" aria-hidden="true"></div>
 
 <main class="page">
-  <p class="eyebrow">Al Foah &middot; Date ingredients</p>
+  <p class="eyebrow"><img src="alfoah logo.png" alt="Al Foah" style="height: 32px; display: block; margin: 0 auto;"></p>
   <h1>Nature's sweetness, engineered for manufacturing</h1>
   <p class="lede">Get our full catalog of date-based ingredients &mdash; pastes, syrups, powders and more &mdash; with specs and applications for bakery, beverage, confectionery and beyond.</p>
 
@@ -203,8 +204,7 @@
     <div class="field">
       <label for="email">Work email</label>
       <input type="email" id="email" name="email" autocomplete="email" inputmode="email" placeholder="you@company.com" required>
-      <p class="hint">We'll verify your corporate email address</p>
-      <p class="error" id="email-error">Please enter a valid email address.</p>
+<p class="error" id="email-error">Please enter a valid email address.</p>
     </div>
 
     <div class="field">
@@ -218,17 +218,17 @@
       <input type="tel" id="mobile" name="mobile" autocomplete="tel" inputmode="tel" placeholder="+971 50 000 0000">
     </div>
 
-    <button type="submit" class="submit" id="submit-btn">Access the catalog</button>
+    <button type="submit" class="submit" id="submit-btn">Get the catalog</button>
 
     <p class="privacy">Your details stay with us. No spam &mdash; just ingredients worth knowing about.</p>
   </form>
 
   <div class="card" id="success-message" style="display: none; text-align: center; padding: 40px 22px;">
     <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 16px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-    <h2 style="font-size: 22px; margin-bottom: 8px;">Thank you, <span id="user-first-name">there</span>!</h2>
+    <h2 style="font-size: 22px; margin-bottom: 8px;">Thank you, <span id="user-first-name"></span>!</h2>
     <p style="color: var(--ink-soft); font-size: 15px; margin-bottom: 24px;">Your catalog is ready for download.</p>
     
-    <a href="path/to/your-catalog.pdf" download class="submit" style="display: block; text-decoration: none; text-align: center;">
+    <a href="AlFoah Ingredients 2026.pdf" download class="submit" style="display: block; text-decoration: none; text-align: center;">
       Download PDF Catalog
     </a>
   </div>
@@ -317,7 +317,7 @@
 
     } catch (err) {
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Access the catalog';
+      submitBtn.textContent = 'Get the catalog';
       alert('Something went wrong sending your details. Please try again.');
     }
   });

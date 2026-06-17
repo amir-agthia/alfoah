@@ -197,6 +197,13 @@
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; }
   }
+
+  body.embed .eyebrow,
+  body.embed h1,
+  body.embed .lede,
+  body.embed .trust { display: none; }
+
+  body.embed .page { padding: 20px; }
 </style>
 </head>
 <body>
@@ -262,7 +269,10 @@
 </main>
 
 <script>
-  // Paste your Google Apps Script web app URL here after deployment
+  if (new URLSearchParams(location.search).has('embed')) {
+    document.body.classList.add('embed');
+  }
+
   const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwjmEi5uigalLEu8Wp5adCCvIR7xuSvxAIjPGgArV_PUgV7T0-s-kj8Ll9Nmuhf38vd-w/exec';
 
   const form = document.getElementById('catalog-form');

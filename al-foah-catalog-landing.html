@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Download the Al Foah ingredients catalog</title>
+<meta name="description" content="Get the full Al Foah catalog of date-based ingredients — pastes, syrups, powders and more — with specs and applications for bakery, beverage and confectionery.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-900: #04342C;
+    --green-700: #0F6E56;
+    --green-600: #12805F;
+    --green-50:  #E1F5EE;
+    --amber-500: #C98A2B;
+    --sand-bg:   #F7F4EE;
+    --ink:       #1E2421;
+    --ink-soft:  #5C645F;
+    --ink-faint: #8A938D;
+    --line:      #E2DED4;
+    --white:     #FFFFFF;
+    --radius:    12px;
+    --radius-sm: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Instrument Sans', system-ui, -apple-system, sans-serif;
+    background: var(--sand-bg);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .brand-bar {
+    height: 4px;
+    background: linear-gradient(90deg, var(--green-700) 0 70%, var(--amber-500) 70% 100%);
+  }
+
+  .page {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 40px 20px 56px;
+  }
+
+  .eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green-700);
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-size: clamp(24px, 6vw, 30px);
+    font-weight: 600;
+    line-height: 1.25;
+    text-align: center;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+
+  .lede {
+    font-size: 15px;
+    color: var(--ink-soft);
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 26px 22px 22px;
+  }
+
+  .field { margin-bottom: 16px; }
+
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  label .optional {
+    font-weight: 400;
+    color: var(--ink-faint);
+  }
+
+  input {
+    width: 100%;
+    font: inherit;
+    font-size: 16px; /* 16px prevents iOS zoom-on-focus */
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--white);
+    color: var(--ink);
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  input::placeholder { color: var(--ink-faint); }
+
+  input:focus {
+    outline: none;
+    border-color: var(--green-700);
+    box-shadow: 0 0 0 3px var(--green-50);
+  }
+
+  input.invalid {
+    border-color: #C0392B;
+    box-shadow: 0 0 0 3px #FBEAEA;
+  }
+
+  .hint {
+    font-size: 12px;
+    color: var(--ink-faint);
+    margin-top: 5px;
+  }
+
+  .error {
+    display: none;
+    font-size: 12px;
+    color: #C0392B;
+    margin-top: 5px;
+  }
+
+  .error.show { display: block; }
+
+  .submit {
+    width: 100%;
+    font: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--white);
+    background: var(--green-700);
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 14px;
+    margin-top: 6px;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.05s;
+  }
+
+  .submit:hover { background: var(--green-600); }
+  .submit:active { transform: scale(0.99); }
+  .submit:focus-visible { outline: 3px solid var(--amber-500); outline-offset: 2px; }
+  .submit:disabled { opacity: 0.6; cursor: wait; }
+
+  .privacy {
+    font-size: 12px;
+    color: var(--ink-faint);
+    text-align: center;
+    margin-top: 14px;
+    line-height: 1.5;
+  }
+
+  .trust {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+    margin-top: 24px;
+  }
+
+  .trust span {
+    font-size: 12px;
+    color: var(--ink-soft);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .trust svg { flex-shrink: 0; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="brand-bar" aria-hidden="true"></div>
+
+<main class="page">
+  <p class="eyebrow">Al Foah &middot; Date ingredients</p>
+  <h1>Nature's sweetness, engineered for manufacturing</h1>
+  <p class="lede">Get our full catalog of date-based ingredients &mdash; pastes, syrups, powders and more &mdash; with specs and applications for bakery, beverage, confectionery and beyond.</p>
+
+  <form class="card" id="catalog-form" novalidate>
+    <div class="field">
+      <label for="name">Full name</label>
+      <input type="text" id="name" name="name" autocomplete="name" placeholder="e.g. Sara Al Mansoori" required>
+      <p class="error" id="name-error">Please enter your name.</p>
+    </div>
+
+    <div class="field">
+      <label for="email">Work email</label>
+      <input type="email" id="email" name="email" autocomplete="email" inputmode="email" placeholder="you@company.com" required>
+      <p class="hint">We'll verify your corporate email address</p>
+      <p class="error" id="email-error">Please enter a valid email address.</p>
+    </div>
+
+    <div class="field">
+      <label for="company">Company name</label>
+      <input type="text" id="company" name="company" autocomplete="organization" placeholder="e.g. Gulf Foods LLC" required>
+      <p class="error" id="company-error">Please enter your company name.</p>
+    </div>
+
+    <div class="field">
+      <label for="mobile">Mobile number <span class="optional">(optional)</span></label>
+      <input type="tel" id="mobile" name="mobile" autocomplete="tel" inputmode="tel" placeholder="+971 50 000 0000">
+    </div>
+
+    <button type="submit" class="submit" id="submit-btn">Access the catalog</button>
+
+    <p class="privacy">Your details stay with us. No spam &mdash; just ingredients worth knowing about.</p>
+  </form>
+
+  <div class="card" id="success-message" style="display: none; text-align: center; padding: 40px 22px;">
+    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 16px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+    <h2 style="font-size: 22px; margin-bottom: 8px;">Thank you, <span id="user-first-name">there</span>!</h2>
+    <p style="color: var(--ink-soft); font-size: 15px; margin-bottom: 24px;">Your catalog is ready for download.</p>
+    
+    <a href="path/to/your-catalog.pdf" download class="submit" style="display: block; text-decoration: none; text-align: center;">
+      Download PDF Catalog
+    </a>
+  </div>
+
+  <div class="trust">
+    <span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21c.5-4.5 2.5-8 7-10"/><path d="M9 18c6.2 0 10-3.8 10-10V4h-4C8.8 4 5 7.8 5 14v4h4z"/></svg>
+      100% natural dates
+    </span>
+    <span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M9 14.5L8 21l4-2 4 2-1-6.5"/></svg>
+      Food-safety certified
+    </span>
+    <span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M5 17H3V6h12v11M15 9h4l2 3v5h-2"/></svg>
+      Global B2B supply
+    </span>
+  </div>
+</main>
+
+<script>
+  const form = document.getElementById('catalog-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const successMessage = document.getElementById('success-message');
+
+  const validators = {
+    name:    v => v.trim().length > 1,
+    email:   v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()),
+    company: v => v.trim().length > 1
+  };
+
+  function validateField(id) {
+    const input = document.getElementById(id);
+    const error = document.getElementById(id + '-error');
+    const ok = validators[id](input.value);
+    input.classList.toggle('invalid', !ok);
+    error.classList.toggle('show', !ok);
+    return ok;
+  }
+
+  ['name', 'email', 'company'].forEach(id => {
+    document.getElementById(id).addEventListener('input', () => {
+      document.getElementById(id).classList.remove('invalid');
+      document.getElementById(id + '-error').classList.remove('show');
+    });
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const allValid = ['name', 'email', 'company']
+      .map(validateField)
+      .every(Boolean);
+
+    if (!allValid) {
+      form.querySelector('.invalid')?.focus();
+      return;
+    }
+
+    const payload = {
+      name:    form.name.value.trim(),
+      email:   form.email.value.trim(),
+      company: form.company.value.trim(),
+      mobile:  form.mobile.value.trim() || null,
+      source:  'qr-catalog-landing',
+      submittedAt: new Date().toISOString()
+    };
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Processing...';
+
+    try {
+      // ── BACKEND PLACEMAILER ───────────────────────────────────
+      // const res = await fetch('https://your-endpoint.example.com/leads', { ... });
+      // ──────────────────────────────────────────────────────────
+
+      console.log('Lead captured:', payload);
+
+      // Extract and set user's first name
+      const firstName = payload.name.split(' ')[0];
+      document.getElementById('user-first-name').textContent = firstName;
+
+      // Hide form and show download view
+      form.style.display = 'none';
+      successMessage.style.display = 'block';
+
+    } catch (err) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Access the catalog';
+      alert('Something went wrong sending your details. Please try again.');
+    }
+  });
+</script>
+
+</body>
+</html>
